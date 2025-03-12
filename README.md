@@ -15,12 +15,33 @@ Works seamlessly with Pyodide for efficient execution of Python-based variabilit
 Flamapy.js is distributed as an NPM package. You can install it using:
 
 ```
-npm install
+npm install @lbdudc/flamapy.js
 ```
 
 ## Usage
 
-Coming soon
+### Basic Usage
+
+```javascript
+import { Flamapy } from '@lbdudc/flamapy.js';
+
+// Create a new instance of Flamapy
+const flamapy = new Flamapy();
+await flamapy.initialize();
+
+const operation = "configurations_number";
+
+const filePath = "path/to/feature-model.json";
+try {
+    const result = await flamapy.runFlamapyMethod(operation, filePath);
+    console.log(`Result of ${operation} for ${filePath}:`, result);
+} catch (error) {
+    console.error("Error:", error.message);
+}
+```
+
+The operations supported are the same as Flamapy:
+<https://docs.flamapy.org/tool/command_line_interface#supported-operations>
 
 ## Contributing
 
