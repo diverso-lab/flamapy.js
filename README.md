@@ -1,5 +1,10 @@
 # Flamapy.js
 
+<div style="display:flex; margin-bottom: 20px;">
+  <img src="https://img.shields.io/npm/v/@lbdudc/flamapy.js?&style=flat-square" alt="npm version">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?&style=flat-square" alt="License: MIT">
+</div>
+
 Flamapy.js is a JavaScript package designed to bring Flamapy functionalities into a WebAssembly (WASM) environment using Pyodide. It allows developers to work with feature models, variability analysis, and other Flamapy modules directly in JavaScript applications.
 
 ## Features
@@ -14,7 +19,7 @@ Works seamlessly with Pyodide for efficient execution of Python-based variabilit
 
 Flamapy.js is distributed as an NPM package. You can install it using:
 
-```
+```bash
 npm install @lbdudc/flamapy.js
 ```
 

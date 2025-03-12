@@ -1,7 +1,7 @@
 {
   "name": "@lbdudc/flamapy.js",
-  "version": "0.0.3",
-  "description": "Instala wheels en Pyodide desde Node.js",
+  "version": "0.0.4",
+  "description": "Javascript version of Flamapy.py, a Python library for analysing feature models",
   "main": "lib/flamapy.js",
   "module": "lib/flamapy.js",
   "type": "module",
