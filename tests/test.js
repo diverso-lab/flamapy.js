@@ -8,8 +8,8 @@ import path from "path";
 
     const filePath = path.resolve(__dirname, "./uvls/test.uvl");
 
-    const flamapy = new Flamapy();
-    await flamapy.initialize(filePath);
+    const flamapy = new Flamapy(filePath);
+    await flamapy.initialize();
 
     const result = await flamapy.atomicSets();
     // const result = await flamapy.averageBranchingFactor();

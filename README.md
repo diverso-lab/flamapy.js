@@ -30,16 +30,20 @@ npm install @lbdudc/flamapy.js
 ```javascript
 import { Flamapy } from '@lbdudc/flamapy.js';
 
+// OPTIONAL: Set the options for Flamapy
+const options = {
+    DEBUG: false,
+};
+
 // Create a new instance of Flamapy
-const flamapy = new Flamapy();
+const flamapy = new Flamapy('path/to/feature-model.uvl', options);
 await flamapy.initialize();
 
-const operation = "configurations_number";
-
-const filePath = "path/to/feature-model.json";
 try {
-    const result = await flamapy.runFlamapyMethod(operation, filePath);
+    // Execute a Flamapy operation
+    const result = await flamapy.atomicSets();
     console.log(`Result of ${operation} for ${filePath}:`, result);
+
 } catch (error) {
     console.error("Error:", error.message);
 }
