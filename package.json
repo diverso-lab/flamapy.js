@@ -5,11 +5,14 @@
   "main": "lib/flamapy.js",
   "module": "lib/flamapy.js",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "test": "vitest"
+  },
   "dependencies": {
     "pyodide": "0.26.2"
   },
   "devDependencies": {
+    "vitest": "3.0.8",
     "eslint": "^8.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^14.0.0"

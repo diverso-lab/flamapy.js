@@ -43,6 +43,29 @@ try {
 The operations supported are the same as Flamapy:
 <https://docs.flamapy.org/tool/command_line_interface#supported-operations>
 
+The current operations supported are:
+
+```javascript
+    atomicSets();
+    averageBranchingFactor();
+    commonality("path_to_compare_uvl"); // TODO
+    configurations();
+    configurationsNumber();
+    conflictDetection(); // TODO
+    coreFeatures();
+    countLeafs();
+    deadFeatures();
+    estimatedNumberOfConfigurations();
+    falseOptionalFeatures();
+    featureAncestors(); // TODO
+    filterFeatures(); // TODO
+    leafFeatures();
+    maxDepth();
+    satisfiable();
+    satisfiableConfiguration(path, boolean); // TODO
+    uniqueFeatures(); // TODO
+```
+
 ## Contributing
 
 If you want to contribute to Flamapy.js, please follow these steps:
