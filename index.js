@@ -1,10 +1,10 @@
-import Flamapy from "./flamapy.js";
+import Flamapy from "./lib/flamapy.js";
 
 (async () => {
     const flamapy = new Flamapy();
     await flamapy.initialize(); // Esto solo se hará una vez
 
-    const filePath = "test.uvl";
+    const filePath = "./tests/test.uvl";
     const operation = "configurations_number";
 
     try {
