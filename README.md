@@ -37,6 +37,17 @@ const options = {
 
 // Create a new instance of Flamapy
 const flamapy = new Flamapy('path/to/feature-model.uvl', options);
+
+// Constructor also admits the plain UVL string
+// const textUVL = `
+//     feature A
+//         feature B
+//             feature C
+//         feature D
+//     feature E
+// `;
+// const flamapy = new Flamapy(textUVL, options);
+
 await flamapy.initialize();
 
 try {
