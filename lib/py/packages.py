@@ -3,7 +3,7 @@ import micropip
 async def install_packages():
     try:
 
-        base_url = "emfs:///mnt/wheels/"
+        base_url = "emfs:///mnt/py/wheels/"
 
         def get_package_url(package_name):
             return f"{base_url}{package_name}"

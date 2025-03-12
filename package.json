@@ -1,13 +1,10 @@
 {
-  "name": "flamapy.js",
-  "version": "0.0.1",
+  "name": "@lbdudc/flamapy.js",
+  "version": "0.0.3",
   "description": "Instala wheels en Pyodide desde Node.js",
-  "main": "dist/main.js",
-  "module": "dist/main.js",
+  "main": "lib/flamapy.js",
+  "module": "lib/flamapy.js",
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "test": "jest",
     "build": "npm run build:clean && vite build && npm run build:python",
