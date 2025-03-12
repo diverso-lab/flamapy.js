@@ -6,6 +6,7 @@
   "module": "lib/flamapy.js",
   "type": "module",
   "scripts": {
+    "example": "node ./tests/test.js",
     "test": "vitest"
   },
   "dependencies": {

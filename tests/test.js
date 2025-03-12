@@ -11,10 +11,10 @@ import path from "path";
     const flamapy = new Flamapy(filePath);
     await flamapy.initialize();
 
-    const result = await flamapy.atomicSets();
+    // const result = await flamapy.atomicSets();
     // const result = await flamapy.averageBranchingFactor();
     // const result = await flamapy.commonality(path.resolve(__dirname, "./uvls/test2.uvl")); // TODO: Fix this
-    // const result = await flamapy.configurations();
+    const result = await flamapy.configurations();
     // const result = await flamapy.configurationsNumber();
     // const result = await flamapy.coreFeatures();
     // const result = await flamapy.countLeafs();

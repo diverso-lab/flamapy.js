@@ -9,10 +9,8 @@ const __dirname = path.dirname(__filename);
 const filePath = path.resolve(__dirname, "./uvls/test.uvl");
 
 test("Flamapy operations - Atomic Sets", async () => {
-    const flamapy = new Flamapy();
-    await flamapy.initialize(filePath, {
-        DEBUG: true
-    });
+    const flamapy = new Flamapy(filePath);
+    await flamapy.initialize();
 
     const result = await flamapy.atomicSets();
     console.log("Atomic Sets result: ", result);
