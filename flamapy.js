@@ -1,63 +1,86 @@
-import fs from "fs/promises";
+import { readFile } from "fs/promises";
+import { loadPyodide } from "pyodide";
+import path from "path";
+import { fileURLToPath } from "url";
 
-export default class Flamapy {
-    constructor() {
-        this.pyodide = null;
-    }
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+class Flamapy {
     async initialize() {
+        console.log("🚀 Initializing Flamapy run environment...");
+
         if (!this.pyodide) {
-            console.log("Cargando Pyodide...");
-            const pyodideModule = await import("https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.mjs");
-            this.pyodide = await pyodideModule.loadPyodide();
-            console.log("Pyodide cargado.");
+            this.pyodide = await loadPyodide();
+            let mountdir = "/mnt"
+            this.pyodide.FS.mkdirTree(mountdir)
+            this.pyodide.FS.mount(this.pyodide.FS.filesystems.NODEFS , {root:'.'}, mountdir)
             await this.pyodide.loadPackage("micropip");
-            await this.pyodide.runPythonAsync(`
-                import micropip
-                await micropip.install("flamapy")  # Asegura que Flamapy esté disponible
-            `);
+            const scriptPath = path.resolve(__dirname, "./py/packages.py");
+            await this.loadAndRunPythonScript(scriptPath, "await install_packages()");
         }
+        
+        console.log("🔥 Flamapy run environment is ready.");
     }
 
     async runFlamapyMethod(operation, filePath) {
-        if (!this.pyodide) {
-            throw new Error("Flamapy no ha sido inicializado. Llama a initialize() primero.");
-        }
-
-        // Leer el archivo UVL desde el sistema de archivos
-        let fileContent;
         try {
-            fileContent = await fs.readFile(filePath, "utf-8");
+
+            console.log(`Run ${operation} operation for... ${filePath}`);
+            const fileContent = await readFile(filePath, "utf-8");
+            const result = await this.executeFlamapyOperation(operation, fileContent);
+            return result;
+            
         } catch (error) {
-            throw new Error(`Error al leer el archivo ${filePath}: ${error.message}`);
+            console.error("Error running Flamapy method:", error);
         }
+    }
 
-        // Código Python para ejecutar cualquier operación de Flamapy
-        const pythonCode = `
-            from flamapy.metamodels.uvl.transformations import UVLReader
-            from flamapy.metamodels.fm_metamodel.operations import *
+    async executeFlamapyOperation(operation, fileContent) {
+        const result = await this.pyodide.runPythonAsync(`
+            import warnings
+            from flamapy.interfaces.python.flamapy_feature_model import FLAMAFeatureModel
+            from collections.abc import Iterable
+            import inspect
 
-            def run_flamapy_method(file_content, operation_name):
-                model = UVLReader(file_content).transform()
+            warnings.filterwarnings("ignore", category=SyntaxWarning)
 
-                try:
-                    # Buscar la operación dinámicamente
-                    operation_class = globals().get(operation_name)
+            def requires_with_sat(method):
+                signature = inspect.signature(method)
+                return 'with_sat' in signature.parameters
 
-                    if operation_class is None:
-                        return f"Error: La operación '{operation_name}' no existe en Flamapy."
+            with open("uvlfile.uvl", "w") as text_file:
+                text_file.write(${JSON.stringify(fileContent)});
 
-                    # Instanciar y ejecutar la operación
-                    op = operation_class()
-                    op.execute(model)
+            fm = FLAMAFeatureModel("uvlfile.uvl")
 
-                    return op.get_result()
-                except Exception as e:
-                    return f"Error ejecutando '{operation_name}': {str(e)}"
+            if requires_with_sat(getattr(fm, ${JSON.stringify(operation)})):
+                result = getattr(fm, ${JSON.stringify(operation)})(with_sat=True)
+            else:
+                result = getattr(fm, ${JSON.stringify(operation)})()
 
-            run_flamapy_method("""${fileContent}""", "${operation}")
-        `;
+            if isinstance(result, Iterable):
+                result = "<br>".join([f'P({i}): {p}' for i, p in enumerate(result, 1)])
 
-        return await this.pyodide.runPythonAsync(pythonCode);
+            result
+        `);
+
+        return result;
+    }
+
+    async loadAndRunPythonScript(scriptPath, functionCall) {
+        try {
+            const pythonScript = await readFile(scriptPath, "utf-8");
+            await this.pyodide.runPythonAsync(pythonScript);
+            if (functionCall) {
+                await this.pyodide.runPythonAsync(functionCall);
+            }
+        } catch (error) {
+            console.error(`Error loading or executing ${scriptPath}:`, error);
+        }
     }
 }
+
+export default Flamapy;
+

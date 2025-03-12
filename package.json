@@ -1,0 +1,12 @@
+{
+  "name": "flamapy.js",
+  "version": "0.0.1",
+  "description": "Instala wheels en Pyodide desde Node.js",
+  "main": "flamapyjs",
+  "type": "module",
+  "dependencies": {
+    "pyodide": "0.26.2"
+  },
+  "author": "Diverso Lab",
+  "license": "MIT"
+}
