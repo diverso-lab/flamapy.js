@@ -1,0 +1,15 @@
+features
+	Onlineshop2 {abstract}	
+		mandatory
+			Payment {abstract}	
+				alternative
+					"Debit Card"
+					"Credit Card"
+			"Product Selection" {abstract}	
+				mandatory
+					Catalog	
+						optional
+							Categories
+							Sort
+				optional
+					Search
