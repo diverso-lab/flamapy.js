@@ -1,4 +1,4 @@
-import Flamapy from "../lib/flamapy.js";
+import { Flamapy } from "../lib/flamapy.js";
 import { fileURLToPath } from "url";
 import path from "path";
 import { test, expect } from "vitest";
