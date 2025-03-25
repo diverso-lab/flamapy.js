@@ -28,6 +28,6 @@ import path from "path";
     // const result = await flamapy.satisfiable();
     // const result = await flamapy.satisfiableConfiguration();
     // const result = await flamapy.uniqueFeatures();
-    console.log("Atomic Sets result: ", result);
+    //console.log("Atomic Sets result2: ", result);
 })();
 
