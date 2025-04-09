@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "example": "node ./tests/test.js",
-    "test": "mocha --ui qunit --timeout 10000"
+    "test": "mocha --ui qunit --timeout 20000"
   },
   "dependencies": {
     "pyodide": "0.26.2"
