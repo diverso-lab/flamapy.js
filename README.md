@@ -68,22 +68,22 @@ The current operations supported are:
 ```javascript
     atomicSets();
     averageBranchingFactor();
-    commonality("path_to_compare_uvl"); // TODO
+    commonality("path_to_compare_uvl");
     configurations();
     configurationsNumber();
-    conflictDetection(); // TODO
+    conflictDetection();
     coreFeatures();
     countLeafs();
     deadFeatures();
     estimatedNumberOfConfigurations();
     falseOptionalFeatures();
-    featureAncestors(); // TODO
-    filterFeatures(); // TODO
+    featureAncestors();
+    filterFeatures();
     leafFeatures();
     maxDepth();
     satisfiable();
-    satisfiableConfiguration(path, boolean); // TODO
-    uniqueFeatures(); // TODO
+    satisfiableConfiguration(path, boolean);
+    uniqueFeatures();
 ```
 
 ## Contributing
