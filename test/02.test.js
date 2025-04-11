@@ -20,9 +20,8 @@ test("Flamapy operations - Atomic Sets", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.atomicSets();
-    assert.deepEqual(normalizeString(result), normalizeString("P(1): ['Payment', 'Product Selection', 'Onlineshop', 'Catalog']<br>P(2): ['Debit Card']<br>P(3): ['Credit Card']<br>P(4): ['Categories']<br>P(5): ['Sort']<br>P(6): ['Search']<br>P(7): ['UserManagement']<br>P(8): ['Orders']<br>P(9): ['Security']<br>P(10): ['Payments']<br>P(11): ['Wishlist']"));
+    assert.deepEqual(normalizeString(result), "P(1): ['Catalog', 'Onlineshop', 'Payment', 'Product Selection']P(2): ['Debit Card']P(3): ['Credit Card']P(4): ['Categories']P(5): ['Sort']P(6): ['Search']P(7): ['UserManagement']P(8): ['Orders']P(9): ['Security']P(10): ['Payments']P(11): ['Wishlist']");
 })
-
 
 test("Flamapy operations - Average Branching Factor", async () => {
     const flamapy = new Flamapy(filePath, options);
@@ -36,7 +35,7 @@ test("Flamapy operations - Configurations", async () => {
     await flamapy.initialize();
     const result = await flamapy.configurations();
     const value = fs.readFileSync(filePathTxt, "utf8").replace(/\r\n/g, "\n")
-    assert.deepEqual(result, value);
+    assert.deepEqual(normalizeString(result), value);
 });
 
 test("Flamapy operations - Number Configurations", async () => {
@@ -50,7 +49,7 @@ test("Flamapy operations - Core Features", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.coreFeatures();
-    assert.deepEqual(normalizeString(result), normalizeString("P(1): Onlineshop<br>P(2): Payment<br>P(3): Product Selection<br>P(4): Catalog"));
+    assert.deepEqual(normalizeString(result), "P(1): ['Onlineshop']P(2): ['Payment']P(3): ['Product Selection']P(4): ['Catalog']");
 });
 
 test("Flamapy operations - Number Leafs", async () => {
@@ -64,7 +63,7 @@ test("Flamapy operations - Dead Features", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.deadFeatures();
-    assert.deepEqual(result, '');
+    assert.deepEqual(result, []);
 });
 
 test("Flamapy operations - Estimated Number Of Configurations", async () => {
@@ -78,14 +77,14 @@ test("Flamapy operations - False Optional Features", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.falseOptionalFeatures();
-    assert.deepEqual(result, '');
+    assert.deepEqual(result, []);
 });
 
 test("Flamapy operations - leafFeatures", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.leafFeatures();
-    assert.deepEqual(normalizeString(result), normalizeString("P(1): Debit Card<br>P(2): Credit Card<br>P(3): Categories<br>P(4): Sort<br>P(5): Search<br>P(6): Orders<br>P(7): Security<br>P(8): Payments<br>P(9): Wishlist"));
+    assert.deepEqual(normalizeString(result), "P(1): ['Debit Card']P(2): ['Credit Card']P(3): ['Categories']P(4): ['Sort']P(5): ['Search']P(6): ['Orders']P(7): ['Security']P(8): ['Payments']P(9): ['Wishlist']");
 });
 
 test("Flamapy operations - maxDepth", async () => {
@@ -122,7 +121,7 @@ test("Flamapy operations - filterFeatures", async () => {
     await flamapy.initialize();
     const fileConfigValue = fs.readFileSync(fileConfig, "utf8").replace(/\r\n/g, "\n")
     const result = await flamapy.filterFeatures(fileConfigValue);
-    assert.deepEqual(result, '');
+    assert.deepEqual(result, []);
 });
 
 test("Flamapy operations - filterFeatures - Incorrect parameter", async () => {
@@ -136,7 +135,7 @@ test("Flamapy operations - featureAncestors", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.featureAncestors("Security");
-    assert.deepEqual(normalizeString(result), normalizeString("P(1): UserManagement<br>P(2): Onlineshop"));
+    assert.deepEqual(normalizeString(result), "P(1): ['UserManagement']P(2): ['Onlineshop']");
 });
 
 test("Flamapy operations - featureAncestors - Incorrect parameter", async () => {

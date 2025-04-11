@@ -25,6 +25,13 @@ test("Flamapy operations - Commonality", async () => {
     assert.deepEqual(result, 1.0);
 });
 
+test("Flamapy operations - Commonality - fileConfig", async () => {
+    const flamapy = new Flamapy(filePath, options);
+    await flamapy.initialize();
+    const result = await flamapy.commonality(fileConfig);
+    assert.deepEqual(result, 1.0);
+});
+
 test("Flamapy operations - Commonality - Incorrect parameter", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
@@ -37,7 +44,14 @@ test("Flamapy operations - filterFeatures", async () => {
     await flamapy.initialize();
     const fileConfigValue = fs.readFileSync(fileConfig, "utf8").replace(/\r\n/g, "\n")
     const result = await flamapy.filterFeatures(fileConfigValue);
-    assert.deepEqual(result, '');
+    assert.deepEqual(result, []);
+});
+
+test("Flamapy operations - filterFeatures - fileConfig", async () => {
+    const flamapy = new Flamapy(filePath, options);
+    await flamapy.initialize();
+    const result = await flamapy.filterFeatures(fileConfig);
+    assert.deepEqual(result, []);
 });
 
 test("Flamapy operations - filterFeatures - Incorrect parameter", async () => {
@@ -51,7 +65,7 @@ test("Flamapy operations - featureAncestors", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const result = await flamapy.featureAncestors("Security");
-    assert.deepEqual(normalizeString(result), normalizeString("P(1): UserManagement<br>P(2): Onlineshop"));
+    assert.deepEqual(normalizeString(result), "P(1): ['UserManagement']P(2): ['Onlineshop']");
 });
 
 test("Flamapy operations - featureAncestors - Incorrect parameter", async () => {
@@ -66,6 +80,13 @@ test("Flamapy operations - satisfiable Configuration", async () => {
     await flamapy.initialize();
     const fileConfigValue = fs.readFileSync(fileConfig, "utf8").replace(/\r\n/g, "\n")
     const result = await flamapy.satisfiableConfiguration(fileConfigValue);
+    assert.deepEqual(result, false);
+});
+
+test("Flamapy operations - satisfiable Configuration - fileConfig", async () => {
+    const flamapy = new Flamapy(filePath, options);
+    await flamapy.initialize();
+    const result = await flamapy.satisfiableConfiguration(fileConfig);
     assert.deepEqual(result, false);
 });
 
