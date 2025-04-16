@@ -12,6 +12,8 @@ function convertString(str) {
                 if (Array.isArray(subArray)) {
                     const values = subArray.map(v => `'${v}'`).join(', ');
                     return `P(${i + 1}): [${values}]`;
+                } else if (Object.prototype.toString.call(subArray) === '[object Object]') {
+                    return `P(${i + 1}): ['${JSON.stringify(subArray)}']`;
                 } else {
                     return `P(${i + 1}): ['${subArray}']`;
                 }
