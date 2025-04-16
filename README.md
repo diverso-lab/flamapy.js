@@ -90,7 +90,7 @@ The current operations supported are:
 
 atomicSets(): Description: Returns the atomic sets of the feature model.  
 Parameters: None  
-Returns: Array<Array<string>> – A list of atomic feature groups  
+Returns: `Array<Array<string>>` – A list of atomic feature groups  
 
 averageBranchingFactor(): Computes the average number of child features per parent feature in the feature model.  
 Parameters: None  
@@ -102,7 +102,7 @@ Returns: Number
 
 configurations(): Retrieves a list of all valid configurations in the model.  
 Parameters: None  
-Returns: Array<Object> 
+Returns: `Array<Object>`
 
 configurationsNumber(): Returns the total number of valid configurations.  
 Parameters: None  
@@ -112,7 +112,7 @@ conflictDetection(): todo
 
 coreFeatures(): Returns the list of core features (those present in all configurations).  
 Parameters: None  
-Returns: Array<string>
+Returns: `Array<string>`
 
 countLeafs(): Returns the number of leaf features in the model.  
 Parameters: None  
@@ -120,7 +120,7 @@ Returns: Number
 
 deadFeatures(): Returns the features that are never selected in any configuration.  
 Parameters: None  
-Returns: Array<string>
+Returns: `Array<string>`
 
 estimatedNumberOfConfigurations(): Estimates the total number of different configurations that can be produced from a feature model by considering all possible combinations of features.  
 Parameters: None  
@@ -128,19 +128,19 @@ Returns: Number
 
 falseOptionalFeatures(): Identifies optional features that behave like mandatory ones in all configurations.  
 Parameters: None  
-Returns: Array<string>
+Returns: `Array<string>`
 
 featureAncestors(featureName):  Identifies all ancestor features of a given feature in the feature model.   
 Parameters: featureName: string - Given feature  
-Returns: Array<string>
+Returns: `Array<string>`
 
 filterFeatures(path): Filters and returns a subset of features based on specific criteria.  
 Parameters: path: string – Path to the configuration file or the content of the file.  
-Returns: Array<Array<string>>
+Returns: `Array<Array<string>>`
 
 leafFeatures(): Returns all leaf features in the feature model.  
 Parameters: None  
-Returns: Array<string>
+Returns: `Array<string>`
 
 maxDepth(): Computes the maximum depth of the feature tree.  
 Parameters: None  
