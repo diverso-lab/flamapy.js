@@ -34,9 +34,10 @@ import { Flamapy } from '@lbdudc/flamapy.js';
 const options = {
     DEBUG: false,
 };
+const filePath = 'path/to/feature-model.uvl';
 
 // Create a new instance of Flamapy
-const flamapy = new Flamapy('path/to/feature-model.uvl', options);
+const flamapy = new Flamapy(filePath, options);
 
 // Constructor also admits the plain UVL string
 // const textUVL = `
@@ -52,6 +53,7 @@ await flamapy.initialize();
 
 try {
     // Execute a Flamapy operation
+    const operation = 'atomicSets';
     const result = await flamapy.atomicSets();
     console.log(`Result of ${operation} for ${filePath}:`, result);
 
@@ -68,7 +70,7 @@ The current operations supported are:
 ```javascript
     atomicSets();
     averageBranchingFactor();
-    commonality("path_to_compare_uvl");
+    commonality("path_to_compare");
     configurations();
     configurationsNumber();
     conflictDetection();
@@ -85,6 +87,75 @@ The current operations supported are:
     satisfiableConfiguration(path, boolean);
     uniqueFeatures();
 ```
+
+atomicSets(): Description: Returns the atomic sets of the feature model.  
+Parameters: None  
+Returns: `Array<Array<string>>` – A list of atomic feature groups  
+
+averageBranchingFactor(): Computes the average number of child features per parent feature in the feature model.  
+Parameters: None  
+Returns: Number  
+
+commonality(pathToCompare): Calculates the percentage of features common to both the loaded feature model and the model at the specified path.  
+Parameters: pathToCompare – Path to configuration file  
+Returns: Number   
+
+configurations(): Retrieves a list of all valid configurations in the model.  
+Parameters: None  
+Returns: `Array<Object>`
+
+configurationsNumber(): Returns the total number of valid configurations.  
+Parameters: None  
+Returns: Number
+
+conflictDetection(): todo  
+
+coreFeatures(): Returns the list of core features (those present in all configurations).  
+Parameters: None  
+Returns: `Array<string>`
+
+countLeafs(): Returns the number of leaf features in the model.  
+Parameters: None  
+Returns: Number
+
+deadFeatures(): Returns the features that are never selected in any configuration.  
+Parameters: None  
+Returns: `Array<string>`
+
+estimatedNumberOfConfigurations(): Estimates the total number of different configurations that can be produced from a feature model by considering all possible combinations of features.  
+Parameters: None  
+Returns: Number
+
+falseOptionalFeatures(): Identifies optional features that behave like mandatory ones in all configurations.  
+Parameters: None  
+Returns: `Array<string>`
+
+featureAncestors(featureName):  Identifies all ancestor features of a given feature in the feature model.   
+Parameters: featureName: string - Given feature  
+Returns: `Array<string>`
+
+filterFeatures(path): Filters and returns a subset of features based on specific criteria.  
+Parameters: path: string – Path to the configuration file or the content of the file.  
+Returns: `Array<Array<string>>`
+
+leafFeatures(): Returns all leaf features in the feature model.  
+Parameters: None  
+Returns: `Array<string>`
+
+maxDepth(): Computes the maximum depth of the feature tree.  
+Parameters: None  
+Returns: Number
+
+satisfiable(): Checks whether a given model is valid according to the constraints defined in the feature model.  
+Parameters: None  
+Returns: Boolean
+
+satisfiableConfiguration(path, fullConfig): Checks if there exists at least one valid configuration that satisfies a given set of selected and deselected features.  
+Parameters: path: string – Path to the configuration file or the content of the file.  
+            fullConfig: boolean – Whether to expect a full configuration or partial.  
+Returns: Boolean  
+
+uniqueFeatures(): todo
 
 ## Contributing
 
