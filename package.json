@@ -1,6 +1,6 @@
 {
   "name": "@lbdudc/flamapy.js",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "Javascript version of Flamapy.py, a Python library for analysing feature models",
   "main": "lib/flamapy.js",
   "module": "lib/flamapy.js",
@@ -26,15 +26,18 @@
   "lint-staged": {
     "*.{js,ts}": "eslint --fix"
   },
-  "author": "Diverso Lab",
+  "author": {
+    "name": "Victor Lamas",
+    "email": "victor.lamas@udc.es"
+  },
   "contributors": [
     {
-      "name": "Victor Lamas",
-      "email": "victor.lamas@udc.es"
+      "name": "Maria Isabel Limaylla",
+      "email": "maria.limaylla@udc.es"
     },
     {
       "name": "David Organvidez",
-      "email": ""
+      "email": "drorganvidez@us.es"
     }
   ],
   "license": "MIT"
