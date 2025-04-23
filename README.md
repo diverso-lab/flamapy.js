@@ -155,7 +155,9 @@ Parameters: path: string – Path to the configuration file or the content of th
             fullConfig: boolean – Whether to expect a full configuration or partial.  
 Returns: Boolean  
 
-uniqueFeatures(): todo
+uniqueFeatures(): Identifies features that are unique to specific configurations, highlighting features that differentiate configurations.
+Parameters: None  
+Returns: `Array<string>`
 
 ## Contributing
 
