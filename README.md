@@ -240,7 +240,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Identifies features that are unique to specific configurations.
 - **Inputs**: None
-- **Outputs**: `Array<string>` – A list of leaf features.
+- **Outputs**: `Array<string>` – A list of features.
 
 ---
 
