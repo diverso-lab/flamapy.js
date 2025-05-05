@@ -19,4 +19,7 @@ export function normalizeString(str) {
             .join(''); 
         return result;
     } 
+    if (str instanceof Map) {
+        return Array.from(str).map(([k, v]) => `${k}: ${v}`).sort().join(', ');
+    }
 }
