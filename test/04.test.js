@@ -233,3 +233,10 @@ test("Flamapy operations - Sampling PYSAT", async () => {
     assert.deepEqual(result, []);
 });
 
+test("Flamapy operations - Sampling BDD", async () => {
+    const flamapy = new Flamapy(filePath, options);
+    await flamapy.initialize();
+    const result = await flamapy.sampling();
+    assert.deepEqual(Array.isArray(result), true);
+    assert.deepEqual(result, []);
+});
