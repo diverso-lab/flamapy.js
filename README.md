@@ -45,7 +45,7 @@ npm install @lbdudc/flamapy.js
 ### Basic Usage
 
 ```javascript
-import { Flamapy } from '@lbdudc/flamapy.js';
+import { Flamapy, TYPE_SOLVING } from '@lbdudc/flamapy.js';
 
 // OPTIONAL: Set the options for Flamapy
 const options = {
@@ -66,6 +66,17 @@ try {
 } catch (error) {
     console.error('Error:', error.message);
 }
+
+//For advanced solving types
+try {
+    // Execute a Flamapy operation  
+    const result = await flamapy.coreFeatures(TYPE_SOLVING.PYSAT);
+    console.log('Core Features:', result);
+
+} catch (error) {
+    console.error('Error:', error.message);
+}
+
 ```
 
 ---
@@ -111,43 +122,47 @@ new Flamapy(filepathOrText, options)
 
 ---
 
-### **commonality(pathToCompare)**
+### **commonality(pathToCompare,typeSolving)**
 
 - **Description**: Calculates the percentage of features common to both the loaded feature model and the model at the specified path.
 - **Inputs**:
   - `pathToCompare` (string): Path to the configuration file or its content.
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Number` – The percentage of common features.
 
 ---
 
-### **configurations()**
+### **configurations(typeSolving)**
 
 - **Description**: Retrieves a list of all valid configurations in the model.
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
 - **Outputs**: `Array<Object>` – A list of valid configurations.
 
 ---
 
-### **configurationsNumber()**
+### **configurationsNumber(typeSolving)**
 
 - **Description**: Returns the total number of valid configurations.
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
 - **Outputs**: `Number` – The total number of configurations.
 
 ---
 
 ### **conflictDetection()**
 
-- **Description**: Detects conflicts in the feature model (TODO: Implementation pending).
+- **Description**: Detects conflicts in the feature model.
 - **Inputs**: None
 - **Outputs**: (TODO)
 
 ---
 
-### **coreFeatures()**
+### **coreFeatures(typeSolving)**
 
 - **Description**: Returns the list of core features (those present in all configurations).
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of core features.
 
 ---
@@ -160,10 +175,11 @@ new Flamapy(filepathOrText, options)
 
 ---
 
-### **deadFeatures()**
+### **deadFeatures(typeSolving)**
 
 - **Description**: Returns the features that are never selected in any configuration.
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of dead features.
 
 ---
@@ -176,10 +192,11 @@ new Flamapy(filepathOrText, options)
 
 ---
 
-### **falseOptionalFeatures()**
+### **falseOptionalFeatures(typeSolving)**
 
 - **Description**: Identifies optional features that behave like mandatory ones in all configurations.
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of false optional features.
 
 ---
@@ -193,11 +210,12 @@ new Flamapy(filepathOrText, options)
 
 ---
 
-### **filterFeatures(path)**
+### **filterFeatures(path,typeSolving)**
 
 - **Description**: Filters and returns a subset of features based on specific criteria.
 - **Inputs**:
   - `path` (string): Path to the configuration file or its content.
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<Array<string>>` – A filtered list of features.
 
 ---
@@ -221,7 +239,8 @@ new Flamapy(filepathOrText, options)
 ### **satisfiable()**
 
 - **Description**: Checks whether the feature model is valid according to its constraints.
-- **Inputs**: None
+- **Inputs**: 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Boolean` – `true` if the model is satisfiable, otherwise `false`.
 
 ---
@@ -232,15 +251,72 @@ new Flamapy(filepathOrText, options)
 - **Inputs**:
   - `path` (string): Path to the configuration file or its content.
   - `fullConfig` (boolean): Whether to expect a full configuration or partial.
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Boolean` – `true` if a satisfiable configuration exists, otherwise `false`.
 
 ---
 
 ### **uniqueFeatures()**
 
-- **Description**: Identifies features that are unique to specific configurations (TODO: Implementation pending).
+- **Description**: Identifies features that are unique to specific configurations.
 - **Inputs**: None
-- **Outputs**: (TODO)
+- **Outputs**: `Array<string>` – A list of features.
+
+---
+
+### **configurationDistribution()**
+
+- **Description**: Analyzes the distribution of configurations within the feature model, identifying how features are grouped across valid configurations.  
+- **Inputs**: None
+- **Outputs**: `Array<number>` – A list of distributions.
+
+---
+
+### **featureInclusionProbability()**
+
+- **Description**: Calculates the probability of each feature being included in a valid configuration.  
+- **Inputs**: None
+- **Outputs**: `Map` – A list of probabilities of each feature.
+
+---
+
+### **homogeneity()**
+
+- **Description**: Measures the uniformity of feature distributions across all valid configurations.  
+- **Inputs**: None
+- **Outputs**: `Number` – The uniformity of all configurations.
+
+---
+
+### **variability()**
+
+- **Description**: Measures the variability of a feature model by analyzing the presence and absence of features across all valid configurations.
+- **Inputs**: None
+- **Outputs**: `Array<number>` – A list of the variability of the feature model.
+
+---
+
+### **variantFeatures()**
+
+- **Description**: Identifies variant features in the feature model, highlighting features that change across different configurations.
+- **Inputs**: None
+- **Outputs**: `Array<string>` - List of features.
+
+---
+
+### **diagnosis()**
+
+- **Description**: Analyzes the feature model to identify and explain inconsistencies or errors, providing insights into potential fixes.
+- **Inputs**: None
+- **Outputs**: `Array<string>` - List of diagnosis and conflicts.
+
+---
+
+### **sampling()**
+
+- **Description**: Generates a sample set of valid configurations from the feature model, providing a representative subset for analysis.
+- **Inputs**: None
+- **Outputs**: 
 
 ---
 
