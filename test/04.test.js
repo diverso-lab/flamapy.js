@@ -47,8 +47,11 @@ test("Flamapy operations - Commonality - Incorrect parameter", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
     const fileConfigValue = fs.readFileSync(fileConfig, "utf8").replace(/\r\n/g, "\n")
-    const result = await flamapy.commonality(fileConfigValue,TYPE_SOLVING.BDD);    
-    assert.deepEqual(result, 'This function only supports PYSAT and basic solving technique.');
+    try {
+        const result = await flamapy.commonality(fileConfigValue,TYPE_SOLVING.BDD);   
+    } catch (error) {
+        assert.deepEqual(error.message.startsWith('This function only supports PYSAT and basic solving techniques.'),true);
+    }
 });
 
 test("Flamapy operations - Core Features - PYSAT", async () => {
@@ -94,8 +97,11 @@ test("Flamapy operations - False Optional Features - PYSAT", async () => {
 test("Flamapy operations - False Optional Features - Incorrect parameter", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
-    const result = await flamapy.falseOptionalFeatures(TYPE_SOLVING.BDD);
-    assert.deepEqual(result, 'This function only supports PYSAT and basic solving technique.');
+    try {
+        const result = await flamapy.falseOptionalFeatures(TYPE_SOLVING.BDD);
+    } catch (error) {
+        assert.deepEqual(error.message.startsWith('This function only supports PYSAT and basic solving techniques.'),true);
+    }
 });
 
 test("Flamapy operations - filterFeatures - PYSAT", async () => {
@@ -109,8 +115,11 @@ test("Flamapy operations - filterFeatures - PYSAT", async () => {
 test("Flamapy operations - filterFeatures - Incorrect parameter", async () => {
     const flamapy = new Flamapy(filePath, options);
     await flamapy.initialize();
-    const result = await flamapy.filterFeatures(fileConfig,TYPE_SOLVING.BDD);    
-    assert.deepEqual(result, 'This function only supports PYSAT and basic solving technique.');
+    try {
+        const result = await flamapy.filterFeatures(fileConfig,TYPE_SOLVING.BDD); 
+    } catch (error) {
+        assert.deepEqual(error.message.startsWith('This function only supports PYSAT and basic solving techniques.'),true);
+    }
 });
 
 test("Flamapy operations - satisfiable - PYSAT", async () => {

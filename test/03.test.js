@@ -122,7 +122,7 @@ test("Flamapy operations - satisfiable Configuration - Incorrect parameter", asy
     try {
         await flamapy.satisfiableConfiguration(fileConfigValue, 0);
     } catch (error) {
-        assert.deepEqual(error.message.substring(0, 5), 'ERROR');
+        assert.deepEqual(error.message.startsWith(`Expected 'fullConfig' to be a boolean`),true);
     }
 });
 
@@ -133,6 +133,6 @@ test("Flamapy operations - satisfiable Configuration - Incorrect parameter 2", a
     try {
         await flamapy.satisfiableConfiguration(fileConfigValue, '');
     } catch (error) {
-        assert.deepEqual(error.message.substring(0, 5), 'ERROR');
+        assert.deepEqual(error.message.startsWith(`Expected 'fullConfig' to be a boolean`),true);
     }
 });

@@ -45,7 +45,7 @@ npm install @lbdudc/flamapy.js
 ### Basic Usage
 
 ```javascript
-import { Flamapy } from '@lbdudc/flamapy.js';
+import { Flamapy, TYPE_SOLVING } from '@lbdudc/flamapy.js';
 
 // OPTIONAL: Set the options for Flamapy
 const options = {
@@ -66,6 +66,17 @@ try {
 } catch (error) {
     console.error('Error:', error.message);
 }
+
+//For advanced solving types
+try {
+    // Execute a Flamapy operation  
+    const result = await flamapy.coreFeatures(TYPE_SOLVING.PYSAT);
+    console.log('Core Features:', result);
+
+} catch (error) {
+    console.error('Error:', error.message);
+}
+
 ```
 
 ---
@@ -116,7 +127,7 @@ new Flamapy(filepathOrText, options)
 - **Description**: Calculates the percentage of features common to both the loaded feature model and the model at the specified path.
 - **Inputs**:
   - `pathToCompare` (string): Path to the configuration file or its content.
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Number` – The percentage of common features.
 
 ---
@@ -125,7 +136,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Retrieves a list of all valid configurations in the model.
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0), PYSAT(1) or BDD (2). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
 - **Outputs**: `Array<Object>` – A list of valid configurations.
 
 ---
@@ -134,7 +145,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Returns the total number of valid configurations.
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0), PYSAT(1) or BDD (2). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
 - **Outputs**: `Number` – The total number of configurations.
 
 ---
@@ -151,7 +162,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Returns the list of core features (those present in all configurations).
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of core features.
 
 ---
@@ -168,7 +179,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Returns the features that are never selected in any configuration.
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of dead features.
 
 ---
@@ -185,7 +196,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Identifies optional features that behave like mandatory ones in all configurations.
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<string>` – A list of false optional features.
 
 ---
@@ -204,7 +215,7 @@ new Flamapy(filepathOrText, options)
 - **Description**: Filters and returns a subset of features based on specific criteria.
 - **Inputs**:
   - `path` (string): Path to the configuration file or its content.
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Array<Array<string>>` – A filtered list of features.
 
 ---
@@ -229,7 +240,7 @@ new Flamapy(filepathOrText, options)
 
 - **Description**: Checks whether the feature model is valid according to its constraints.
 - **Inputs**: 
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Boolean` – `true` if the model is satisfiable, otherwise `false`.
 
 ---
@@ -240,7 +251,7 @@ new Flamapy(filepathOrText, options)
 - **Inputs**:
   - `path` (string): Path to the configuration file or its content.
   - `fullConfig` (boolean): Whether to expect a full configuration or partial.
-  - `typeSolving` (number): Type of solving technique. Could be BASIC (0) or PYSAT(1). 
+  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
 - **Outputs**: `Boolean` – `true` if a satisfiable configuration exists, otherwise `false`.
 
 ---
