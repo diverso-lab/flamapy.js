@@ -86,238 +86,27 @@ try {
 
 Below is a detailed list of supported operations, including their descriptions, inputs, and outputs:
 
-### **Constructor**
-
-```javascript
-new Flamapy(filepathOrText, options)
-```
-
-- **Description**: Creates a new instance of the `Flamapy` class.
-- **Inputs**:
-  - `filepathOrText` (string): Either the path to a feature model file or the feature model as plain text in UVL format.
-  - `options` (object, optional): Configuration options. Example:
-
-    ```javascript
-    {
-        DEBUG: true // Enables debug mode
-    }
-    ```
-
-- **Outputs**: A new `Flamapy` instance.
-
----
-
-### **atomicSets()**
-
-- **Description**: Returns the atomic sets of the feature model.
-- **Inputs**: None
-- **Outputs**: `Array<Array<string>>` – A list of atomic feature groups.
-
----
-
-### **averageBranchingFactor()**
-
-- **Description**: Computes the average number of child features per parent feature in the feature model.
-- **Inputs**: None
-- **Outputs**: `Number` – The average branching factor.
-
----
-
-### **commonality(pathToCompare,typeSolving)**
-
-- **Description**: Calculates the percentage of features common to both the loaded feature model and the model at the specified path.
-- **Inputs**:
-  - `pathToCompare` (string): Path to the configuration file or its content.
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Number` – The percentage of common features.
-
----
-
-### **configurations(typeSolving)**
-
-- **Description**: Retrieves a list of all valid configurations in the model.
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
-- **Outputs**: `Array<Object>` – A list of valid configurations.
-
----
-
-### **configurationsNumber(typeSolving)**
-
-- **Description**: Returns the total number of valid configurations.
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC, PYSAT or BDD . 
-- **Outputs**: `Number` – The total number of configurations.
-
----
-
-### **conflictDetection()**
-
-- **Description**: Detects conflicts in the feature model.
-- **Inputs**: None
-- **Outputs**: (TODO)
-
----
-
-### **coreFeatures(typeSolving)**
-
-- **Description**: Returns the list of core features (those present in all configurations).
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Array<string>` – A list of core features.
-
----
-
-### **countLeafs()**
-
-- **Description**: Returns the number of leaf features in the model.
-- **Inputs**: None
-- **Outputs**: `Number` – The count of leaf features.
-
----
-
-### **deadFeatures(typeSolving)**
-
-- **Description**: Returns the features that are never selected in any configuration.
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Array<string>` – A list of dead features.
-
----
-
-### **estimatedNumberOfConfigurations()**
-
-- **Description**: Estimates the total number of different configurations that can be produced from the feature model.
-- **Inputs**: None
-- **Outputs**: `Number` – The estimated number of configurations.
-
----
-
-### **falseOptionalFeatures(typeSolving)**
-
-- **Description**: Identifies optional features that behave like mandatory ones in all configurations.
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Array<string>` – A list of false optional features.
-
----
-
-### **featureAncestors(featureName)**
-
-- **Description**: Identifies all ancestor features of a given feature in the feature model.
-- **Inputs**:
-  - `featureName` (string): The name of the feature.
-- **Outputs**: `Array<string>` – A list of ancestor features.
-
----
-
-### **filterFeatures(path,typeSolving)**
-
-- **Description**: Filters and returns a subset of features based on specific criteria.
-- **Inputs**:
-  - `path` (string): Path to the configuration file or its content.
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Array<Array<string>>` – A filtered list of features.
-
----
-
-### **leafFeatures()**
-
-- **Description**: Returns all leaf features in the feature model.
-- **Inputs**: None
-- **Outputs**: `Array<string>` – A list of leaf features.
-
----
-
-### **maxDepth()**
-
-- **Description**: Computes the maximum depth of the feature tree.
-- **Inputs**: None
-- **Outputs**: `Number` – The maximum depth.
-
----
-
-### **satisfiable()**
-
-- **Description**: Checks whether the feature model is valid according to its constraints.
-- **Inputs**: 
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Boolean` – `true` if the model is satisfiable, otherwise `false`.
-
----
-
-### **satisfiableConfiguration(path, fullConfig)**
-
-- **Description**: Checks if there exists at least one valid configuration that satisfies a given set of selected and deselected features.
-- **Inputs**:
-  - `path` (string): Path to the configuration file or its content.
-  - `fullConfig` (boolean): Whether to expect a full configuration or partial.
-  - `typeSolving` (enum): Type of solving technique. Could be BASIC or PYSAT. 
-- **Outputs**: `Boolean` – `true` if a satisfiable configuration exists, otherwise `false`.
-
----
-
-### **uniqueFeatures()**
-
-- **Description**: Identifies features that are unique to specific configurations.
-- **Inputs**: None
-- **Outputs**: `Array<string>` – A list of features.
-
----
-
-### **configurationDistribution()**
-
-- **Description**: Analyzes the distribution of configurations within the feature model, identifying how features are grouped across valid configurations.  
-- **Inputs**: None
-- **Outputs**: `Array<number>` – A list of distributions.
-
----
-
-### **featureInclusionProbability()**
-
-- **Description**: Calculates the probability of each feature being included in a valid configuration.  
-- **Inputs**: None
-- **Outputs**: `Map` – A list of probabilities of each feature.
-
----
-
-### **homogeneity()**
-
-- **Description**: Measures the uniformity of feature distributions across all valid configurations.  
-- **Inputs**: None
-- **Outputs**: `Number` – The uniformity of all configurations.
-
----
-
-### **variability()**
-
-- **Description**: Measures the variability of a feature model by analyzing the presence and absence of features across all valid configurations.
-- **Inputs**: None
-- **Outputs**: `Array<number>` – A list of the variability of the feature model.
-
----
-
-### **variantFeatures()**
-
-- **Description**: Identifies variant features in the feature model, highlighting features that change across different configurations.
-- **Inputs**: None
-- **Outputs**: `Array<string>` - List of features.
-
----
-
-### **diagnosis()**
-
-- **Description**: Analyzes the feature model to identify and explain inconsistencies or errors, providing insights into potential fixes.
-- **Inputs**: None
-- **Outputs**: `Array<string>` - List of diagnosis and conflicts.
-
----
-
-### **sampling()**
-
-- **Description**: Generates a sample set of valid configurations from the feature model, providing a representative subset for analysis.
-- **Inputs**: None
-- **Outputs**: 
+| **Method**                     | **Description**                                                                                     | **Inputs**                                                                                                                                                                                                 | **Outputs**                                   |
+|--------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| **Constructor**                | Creates a new instance of the `Flamapy` class.                                                     | `filepathOrText` (string): Path to a feature model file or plain text in UVL format.<br>`options` (object, optional): Configuration options (e.g., `{ DEBUG: true }`).                                    | A new `Flamapy` instance.                    |
+| **atomicSets()**               | Returns the atomic sets of the feature model.                                                      | None                                                                                                                                                                                                      | `Array<Array<string>>` – A list of atomic sets. |
+| **averageBranchingFactor()**   | Computes the average number of child features per parent feature in the feature model.             | None                                                                                                                                                                                                      | `Number` – The average branching factor.      |
+| **commonality(pathToCompare)** | Calculates the percentage of features common to both the loaded feature model and another model.   | `pathToCompare` (string): Path to the configuration file or its content.                                                                                                                                  | `Number` – The percentage of common features. |
+| **configurations(typeSolving)**| Retrieves a list of all valid configurations in the model.                                          | `typeSolving` (enum): Type of solving technique (e.g., BASIC, PYSAT, or BDD).                                                                                                                             | `Array<Object>` – A list of valid configurations. |
+| **configurationsNumber(typeSolving)** | Returns the total number of valid configurations.                                           | `typeSolving` (enum): Type of solving technique (e.g., BASIC, PYSAT, or BDD).                                                                                                                             | `Number` – The total number of configurations. |
+| **conflictDetection()**        | Detects conflicts in the feature model.                                                            | None                                                                                                                                                                                                      | (TODO)                                        |
+| **coreFeatures(typeSolving)**  | Returns the list of core features (those present in all configurations).                           | `typeSolving` (enum): Type of solving technique (e.g., BASIC or PYSAT).                                                                                                                                   | `Array<string>` – A list of core features.    |
+| **countLeafs()**               | Returns the number of leaf features in the model.                                                  | None                                                                                                                                                                                                      | `Number` – The count of leaf features.        |
+| **deadFeatures(typeSolving)**  | Returns the features that are never selected in any configuration.                                 | `typeSolving` (enum): Type of solving technique (e.g., BASIC or PYSAT).                                                                                                                                   | `Array<string>` – A list of dead features.    |
+| **estimatedNumberOfConfigurations()** | Estimates the total number of different configurations that can be produced.              | None                                                                                                                                                                                                      | `Number` – The estimated number of configurations. |
+| **falseOptionalFeatures(typeSolving)** | Identifies optional features that behave like mandatory ones in all configurations.       | `typeSolving` (enum): Type of solving technique (e.g., BASIC or PYSAT).                                                                                                                                   | `Array<string>` – A list of false optional features. |
+| **featureAncestors(featureName)** | Identifies all ancestor features of a given feature in the feature model.                      | `featureName` (string): The name of the feature.                                                                                                                                                          | `Array<string>` – A list of ancestor features. |
+| **filterFeatures(path, typeSolving)** | Filters and returns a subset of features based on specific criteria.                        | `path` (string): Path to the configuration file or its content.<br>`typeSolving` (enum): Type of solving technique (e.g., BASIC or PYSAT).                                                                | `Array<Array<string>>` – A filtered list of features. |
+| **leafFeatures()**             | Returns all leaf features in the feature model.                                                   | None                                                                                                                                                                                                      | `Array<string>` – A list of leaf features.    |
+| **maxDepth()**                 | Computes the maximum depth of the feature tree.                                                   | None                                                                                                                                                                                                      | `Number` – The maximum depth.                 |
+| **satisfiable(typeSolving)**   | Checks whether the feature model is valid according to its constraints.                           | `typeSolving` (enum): Type of solving technique (e.g., BASIC or PYSAT).                                                                                                                                   | `Boolean` – `true` if the model is satisfiable. |
+| **satisfiableConfiguration(path, fullConfig, typeSolving)** | Checks if there exists at least one valid configuration that satisfies a given set of features. | `path` (string): Path to the configuration file or its content.<br>`fullConfig` (boolean): Whether to expect a full configuration or partial.<br>`typeSolving` (enum): Type of solving technique.         | `Boolean` – `true` if a satisfiable configuration exists. |
+| **uniqueFeatures()**           | Identifies features that are unique to specific configurations.                                   | None                                                                                                                                                                                                      | (TODO)                                        |
 
 ---
 
@@ -331,13 +120,12 @@ If you want to contribute to Flamapy.js, please follow these steps:
 
 ---
 
-## Contributions 
+## Contributions
 
 A significant part of this project was developed by the Database Laboratory of the University of A Coruña (LBD). You can find more information about their work and other projects at the following links:
 
-* **LBD GitHub:** [https://github.com/lbdudc](https://github.com/lbdudc)
-* **LBD Website:** [https://lbd.udc.es](https://lbd.udc.es)
-
+- **LBD GitHub:** [https://github.com/lbdudc](https://github.com/lbdudc)
+- **LBD Website:** [https://lbd.udc.es](https://lbd.udc.es)
 
 ## Authors
 
