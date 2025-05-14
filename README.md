@@ -45,7 +45,8 @@ npm install @lbdudc/flamapy.js
 ### Basic Usage
 
 ```javascript
-import { Flamapy, TYPE_SOLVING } from '@lbdudc/flamapy.js';
+import { Flamapy } from '@lbdudc/flamapy.js';
+import { TYPE_SOLVING } from '@lbdudc/flamapy.js/lib/type.js';
 
 // OPTIONAL: Set the options for Flamapy
 const options = {
@@ -329,6 +330,14 @@ If you want to contribute to Flamapy.js, please follow these steps:
 3. Submit a pull request with a detailed description of your changes.
 
 ---
+
+## Contributions 
+
+A significant part of this project was developed by the Database Laboratory of the University of A Coruña (LBD). You can find more information about their work and other projects at the following links:
+
+* **LBD GitHub:** [https://github.com/lbdudc](https://github.com/lbdudc)
+* **LBD Website:** [https://lbd.udc.es](https://lbd.udc.es)
+
 
 ## Authors
 
